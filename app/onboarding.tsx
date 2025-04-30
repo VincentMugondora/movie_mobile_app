@@ -4,7 +4,7 @@ import React from 'react'
 const onboarding = () => {
   return (
     <View>
-      <Text className='flex items-center justify-centertext-4xl text-light-200 bg-dark-300 '>onboarding</Text>
+      <Text>onboarding</Text>
     </View>
   )
 }
