@@ -9,6 +9,30 @@ const _layout = () => {
             title: 'Home',
             headerShown: false
              }}  />   
+        <Tabs.Screen name="saved" options={{
+            title: 'Saved',
+            headerShown: false
+             }}  />
+        <Tabs.Screen name="profile" options={{
+            title: 'Profile',
+            headerShown: false
+             }}  />
+        <Tabs.Screen name="settings" options={{
+            title: 'Settings',
+            headerShown: false
+             }}  />
+        <Tabs.Screen name="about" options={{
+            title: 'About',
+            headerShown: false
+             }}  />
+        <Tabs.Screen name="search" options={{
+            title: 'Search',
+            headerShown: false
+             }}  />
+        <Tabs.Screen name="[id]" options={{
+            title: 'Movie',
+            headerShown: false
+             }}  />
    </Tabs>
   )
 }
