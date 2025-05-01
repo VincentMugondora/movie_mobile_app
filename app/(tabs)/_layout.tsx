@@ -1,88 +1,98 @@
-import React from 'react'
-import { ImageBackground, Text, View, Image as RNImage } from 'react-native'
-import { Tabs } from 'expo-router'
-import { images } from '@/constants/images'
-import { icons } from '@/constants/icons'
+import { Tabs } from "expo-router";
+import { ImageBackground, Image, Text, View } from "react-native";
 
-const TabIcon = ({ focused, icon, title }: any) => {
+import { icons } from "@/constants/icons";
+import { images } from "@/constants/images";
+
+function TabIcon({ focused, icon, title }: any) {
+  if (focused) {
+    return (
+      <ImageBackground
+        source={images.highlight}
+        style={{ minHeight: 52 }} 
+        className="flex flex-row w-full flex-1 min-w-[112px] mt-4 justify-center items-center rounded-full overflow-hidden"
+      >
+        <Image source={icon} tintColor="#151312" className="size-5" />
+        <Text className="ml-2 text-base font-semibold text-secondary">
+          {title}
+        </Text>
+      </ImageBackground>
+    );
+  }
+
   return (
-    <ImageBackground
-      source={images.highlight}
-      className="flex-row items-center justify-center px-3 py-2 rounded-full overflow-hidden min-w-[80px] h-10 bg-white"
-    >
-      <RNImage 
-        source={icon} 
-        style={{ width: 20, height: 20, tintColor: '#151312' }} 
-      />
-      <Text className="ml-2 text-sm font-medium text-secondary">{title}</Text>
-    </ImageBackground>
-  )
+    <View className="items-center justify-center mt-4 rounded-full size-full">
+      <Image source={icon} tintColor="#A8B5DB" className="size-5" />
+    </View>
+  );
 }
 
-const _layout = () => {
+export default function TabsLayout() {
   return (
-    <Tabs screenOptions={{ tabBarShowLabel: false }}>
-      <Tabs.Screen 
-        name="index" 
-        options={{ 
-          title: 'Home',
-          headerShown: false,
-          tabBarIcon: ({ focused }) => (
-            <TabIcon 
-              focused={focused} 
-              icon={icons.home}
-              title="Home"
-            />
-          )
-        }}  
-      />   
-
-      <Tabs.Screen 
-        name="profile" 
+    <Tabs
+      screenOptions={{
+        tabBarShowLabel: false,
+        tabBarItemStyle: {
+          width: "100%",
+          height: "100%",
+          justifyContent: "center",
+          alignItems: "center",
+        },
+        tabBarStyle: {
+          backgroundColor: "#0f0D23",
+          borderRadius: 50,
+          marginHorizontal: 20,
+          marginBottom: 36,
+          height: 52,
+          position: "absolute",
+          overflow: "hidden",
+          borderColor: "#0f0D23",
+        },
+      }}
+    >
+      <Tabs.Screen
+        name="index"
         options={{
-          title: 'Profile',
+          title: "index",
           headerShown: false,
           tabBarIcon: ({ focused }) => (
-            <TabIcon 
-              focused={focused} 
-              icon={icons.person}
-              title="Profile"
-            />
-          )
-        }}  
+            <TabIcon focused={focused} icon={icons.home} title="Home" />
+          ),
+        }}
       />
 
-      <Tabs.Screen 
-        name="search" 
+      <Tabs.Screen
+        name="search"
         options={{
-          title: 'Search',
+          title: "Search",
           headerShown: false,
           tabBarIcon: ({ focused }) => (
-            <TabIcon 
-              focused={focused} 
-              icon={icons.search}
-              title="Search"
-            />
-          )
-        }}  
+            <TabIcon focused={focused} icon={icons.search} title="Search" />
+          ),
+        }}
       />
 
-      <Tabs.Screen 
-        name="saved" 
+      <Tabs.Screen
+        name="saved"
         options={{
-          title: 'Saved',
+          title: "Saved",
           headerShown: false,
           tabBarIcon: ({ focused }) => (
-            <TabIcon 
-              focused={focused} 
-              icon={icons.save}
-              title="Saved"
-            />
-          )
-        }}  
+            <TabIcon focused={focused} icon={icons.save} title="Saved" />
+          ),
+        }}
+      />
+
+      <Tabs.Screen
+        name="profile"
+        options={{
+          title: "Profile",
+          headerShown: false,
+          tabBarIcon: ({ focused }) => (
+            <TabIcon focused={focused} icon={icons.person} title="Profile" />
+          ),
+        }}
       />
     </Tabs>
-  )
+  );
 }
-
-export default _layout
