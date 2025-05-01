@@ -1,60 +1,88 @@
-import { ImageBackground, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
+import { ImageBackground, Text, View, Image as RNImage } from 'react-native'
 import { Tabs } from 'expo-router'
-import { Image } from 'expo-image'
 import { images } from '@/constants/images'
 import { icons } from '@/constants/icons'
 
-const TabIcon = () => {
-    return (
-        <ImageBackground  source={images.highlight}
-        className="flex flex-row w-full flex-1 min-w-[112px] min-h-14 mt-4 justify-center items-center rounded-full overflow-hidden">
-                       <Image source={icon} tintColor="#151312" className="size-5" />
-        <Text className="ml-2 text-base font-semibold text-secondary">
-          {title}
-        </Text>
-                    </ImageBackground>
-    )
+const TabIcon = ({ focused, icon, title }: any) => {
+  return (
+    <ImageBackground
+      source={images.highlight}
+      className="flex-row items-center justify-center px-3 py-2 rounded-full overflow-hidden min-w-[80px] h-10 bg-white"
+    >
+      <RNImage 
+        source={icon} 
+        style={{ width: 20, height: 20, tintColor: '#151312' }} 
+      />
+      <Text className="ml-2 text-sm font-medium text-secondary">{title}</Text>
+    </ImageBackground>
+  )
 }
 
 const _layout = () => {
   return (
-   <Tabs>
-        <Tabs.Screen name="index" options={{ 
-            title: 'Home',
-            headerShown: false,
-            tabBarIcon: ({ focused }) => (
-                <TabIcon />
-            )
-             }}  />   
-        <Tabs.Screen name="saved" options={{
-            title: 'Saved',
-            headerShown: false
-             }}  />
-        <Tabs.Screen name="profile" options={{
-            title: 'Profile',
-            headerShown: false
-             }}  />
-        <Tabs.Screen name="settings" options={{
-            title: 'Settings',
-            headerShown: false
-             }}  />
-        <Tabs.Screen name="about" options={{
-            title: 'About',
-            headerShown: false
-             }}  />
-        <Tabs.Screen name="search" options={{
-            title: 'Search',
-            headerShown: false
-             }}  />
-        <Tabs.Screen name="[id]" options={{
-            title: 'Movie',
-            headerShown: false
-             }}  />
-   </Tabs>
+    <Tabs screenOptions={{ tabBarShowLabel: false }}>
+      <Tabs.Screen 
+        name="index" 
+        options={{ 
+          title: 'Home',
+          headerShown: false,
+          tabBarIcon: ({ focused }) => (
+            <TabIcon 
+              focused={focused} 
+              icon={icons.home}
+              title="Home"
+            />
+          )
+        }}  
+      />   
+
+      <Tabs.Screen 
+        name="profile" 
+        options={{
+          title: 'Profile',
+          headerShown: false,
+          tabBarIcon: ({ focused }) => (
+            <TabIcon 
+              focused={focused} 
+              icon={icons.person}
+              title="Profile"
+            />
+          )
+        }}  
+      />
+
+      <Tabs.Screen 
+        name="search" 
+        options={{
+          title: 'Search',
+          headerShown: false,
+          tabBarIcon: ({ focused }) => (
+            <TabIcon 
+              focused={focused} 
+              icon={icons.search}
+              title="Search"
+            />
+          )
+        }}  
+      />
+
+      <Tabs.Screen 
+        name="saved" 
+        options={{
+          title: 'Saved',
+          headerShown: false,
+          tabBarIcon: ({ focused }) => (
+            <TabIcon 
+              focused={focused} 
+              icon={icons.save}
+              title="Saved"
+            />
+          )
+        }}  
+      />
+    </Tabs>
   )
 }
 
 export default _layout
-
-const styles = StyleSheet.create({})
