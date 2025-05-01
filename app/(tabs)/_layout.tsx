@@ -3,6 +3,19 @@ import React from 'react'
 import { Tabs } from 'expo-router'
 import { Image } from 'expo-image'
 import { images } from '@/constants/images'
+import { icons } from '@/constants/icons'
+
+const TabIcon = () => {
+    return (
+        <ImageBackground  source={images.highlight}
+        className="flex flex-row w-full flex-1 min-w-[112px] min-h-14 mt-4 justify-center items-center rounded-full overflow-hidden">
+                       <Image source={icon} tintColor="#151312" className="size-5" />
+        <Text className="ml-2 text-base font-semibold text-secondary">
+          {title}
+        </Text>
+                    </ImageBackground>
+    )
+}
 
 const _layout = () => {
   return (
@@ -11,12 +24,7 @@ const _layout = () => {
             title: 'Home',
             headerShown: false,
             tabBarIcon: ({ focused }) => (
-                <>
-                    <ImageBackground className='flex flex-row flex-1 w-full min-w-[112px] min-h-14 mt-4 justify-center items-center rounded-full overflow-hidden'>
-                        <Image source={images.home} tintColor="#000000" className="size-5" />
-                        <Text>Home</Text>
-                    </ImageBackground>
-                </>
+                <TabIcon />
             )
              }}  />   
         <Tabs.Screen name="saved" options={{
